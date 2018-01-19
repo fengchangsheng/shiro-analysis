@@ -356,6 +356,7 @@ public class ShiroFilterFactoryBean implements FactoryBean, BeanPostProcessor {
 
     /**
      * Returns {@code true} always.  There is almost always only ever 1 Shiro {@code Filter} per web application.
+     * 总是返回true. 每个web应用最多只有一个Shiro Filter.
      *
      * @return {@code true} always.  There is almost always only ever 1 Shiro {@code Filter} per web application.
      */

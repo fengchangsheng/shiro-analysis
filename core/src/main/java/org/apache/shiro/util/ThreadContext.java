@@ -30,6 +30,8 @@ import java.util.Map;
 /**
  * A ThreadContext provides a means of binding and unbinding objects to the
  * current thread based on key/value pairs.
+ *
+ * ThreadContext提供了一种基于键值对的绑定和解绑对象到当前线程的方法。
  * <p/>
  * <p>An internal {@link java.util.HashMap} is used to maintain the key/value pairs
  * for each thread.</p>

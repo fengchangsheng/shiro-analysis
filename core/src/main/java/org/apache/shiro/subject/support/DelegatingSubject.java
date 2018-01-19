@@ -48,6 +48,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Implementation of the {@code Subject} interface that delegates
  * method calls to an underlying {@link org.apache.shiro.mgt.SecurityManager SecurityManager} instance for security checks.
  * It is essentially a {@code SecurityManager} proxy.
+ *
+ * 实现了Subject接口，把方法的调用委托给SecurityManager，它本质上是一个SecurityManager代理。
+ *
  * <p/>
  * This implementation does not maintain state such as roles and permissions (only {@code Subject}
  * {@link #getPrincipals() principals}, such as usernames or user primary keys) for better performance in a stateless
@@ -391,6 +394,9 @@ public class DelegatingSubject implements Subject {
         associated.run();
     }
 
+    /**
+     * 这里相当于创建一个代理的Callable--SubjectCallable
+     */
     public <V> Callable<V> associateWith(Callable<V> callable) {
         return new SubjectCallable<V>(this, callable);
     }

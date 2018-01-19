@@ -27,10 +27,15 @@ import javax.servlet.ServletResponse;
  * {@code ServletRequest}.  It allows resolution of arbitrary filter chains which can be executed for any given
  * request or URI/URL.
  * <p/>
+ * 一个 {@code FilterChainResolver} 可以在一个ServletRequest请求期间解析一个合适的 {@link FilterChain} 去执行。
+ *
  * This mechanism allows for a much more flexible FilterChain resolution than normal {@code web.xml} servlet filter
  * definitions:  it allows arbitrary filter chains to be defined per URL in a much more concise and easy to read manner,
  * and even allows filter chains to be dynamically resolved or constructed at runtime if the underlying implementation
  * supports it.
+ *
+ * 这种机制比通常我们在web.xml中配置的servlet过滤器定义要灵活：它允许我们以一种更加灵活的且易于阅读的方式为每个URL配置
+ * 特定的过滤器链。如果底层的实现支持，甚至允许在运行时动态解析或构造过滤器链。
  *
  * @since 1.0
  */

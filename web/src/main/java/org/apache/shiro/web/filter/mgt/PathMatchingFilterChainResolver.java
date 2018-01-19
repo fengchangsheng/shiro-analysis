@@ -33,6 +33,8 @@ import javax.servlet.ServletResponse;
  * A {@code FilterChainResolver} that resolves {@link FilterChain}s based on url path
  * matching, as determined by a configurable {@link #setPathMatcher(org.apache.shiro.util.PatternMatcher) PathMatcher}.
  * <p/>
+ * 一个 {@code FilterChainResolver} 解析 {@link FilterChain}s 通过url路径匹配，
+ *
  * This implementation functions by consulting a {@link org.apache.shiro.web.filter.mgt.FilterChainManager} for all configured filter chains (keyed
  * by configured path pattern).  If an incoming Request path matches one of the configured path patterns (via
  * the {@code PathMatcher}, the corresponding configured {@code FilterChain} is returned.

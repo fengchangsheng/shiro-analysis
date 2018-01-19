@@ -41,6 +41,7 @@ import java.util.concurrent.Callable;
 /**
  * Abstract base class that provides all standard Shiro request filtering behavior and expects
  * subclasses to implement configuration-specific logic (INI, XML, .properties, etc).
+ * 抽象基类，提供所有标准Shiro过滤操作，期待子类实现基于特定配置的逻辑（INI，xml,.properties等等）。
  * <p/>
  * Subclasses should perform configuration and construction logic in an overridden
  * {@link #init()} method implementation.  That implementation should make available any constructed
@@ -353,12 +354,13 @@ public abstract class AbstractShiroFilter extends OncePerRequestFilter {
         Throwable t = null;
 
         try {
+            // 包装request和response
             final ServletRequest request = prepareServletRequest(servletRequest, servletResponse, chain);
             final ServletResponse response = prepareServletResponse(request, servletResponse, chain);
 
             final Subject subject = createSubject(request, response);
 
-            //noinspection unchecked
+            //noinspection unchecked  可以看DelegatingSubject#execute()
             subject.execute(new Callable() {
                 public Object call() throws Exception {
                     updateSessionLastAccessTime(request, response);
@@ -387,6 +389,9 @@ public abstract class AbstractShiroFilter extends OncePerRequestFilter {
 
     /**
      * Returns the {@code FilterChain} to execute for the given request.
+     *
+     * 返回基于特定请求的FilterChain，即代理过滤器链。这里传的的参数是原生FilterChain。
+     *
      * <p/>
      * The {@code origChain} argument is the
      * original {@code FilterChain} supplied by the Servlet Container, but it may be modified to provide

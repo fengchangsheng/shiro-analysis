@@ -42,6 +42,8 @@ import java.io.IOException;
  * <p/>
  * <b>NOTE</b> This class was initially borrowed from the Spring framework but has continued modifications.
  *
+ * 这个类是最初是从spring中借用的，但是经过了不断地修改。
+ *
  * @since 0.1
  */
 public abstract class OncePerRequestFilter extends NameableFilter {

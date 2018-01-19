@@ -25,6 +25,7 @@ import java.util.Map;
 
 /**
  * A {@code SubjectFactory} is responsible for constructing {@link Subject Subject} instances as needed.
+ * 一个{@code SubjectFactory}用来构造需要的{@link Subject Subject}实例
  *
  * @since 1.0
  */

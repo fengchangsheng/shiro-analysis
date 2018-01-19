@@ -31,6 +31,9 @@ import java.util.List;
  * original chain.  It allows a list of filters to execute before continuing the original (proxied)
  * {@code FilterChain} instance.
  *
+ * 代理的过滤器链是一个{@link FilterChain}实例，它代理一个原始的{@link FilterChain}以及其他一个
+ * {@link List List}集合的{@link Filter Filter}，可能需要在最终包装原始链。它允许在继续原始（代理）之前执行过滤器列表。
+ *
  * @since 0.9
  */
 public class ProxiedFilterChain implements FilterChain {
