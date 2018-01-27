@@ -62,6 +62,8 @@ public interface ThreadState {
      * Restores a thread to its state before bind {@link #bind bind} was invoked.  This should typically always be
      * called in a {@code finally} block to guarantee that the thread is cleanly restored back to its original state
      * before {@link #bind bind}'s bind was called.  For example:
+     *
+     * 将线程恢复到绑定方法调用之前的状态。
      * <pre>
      * ThreadState state = //acquire or instantiate as necessary
      * try {

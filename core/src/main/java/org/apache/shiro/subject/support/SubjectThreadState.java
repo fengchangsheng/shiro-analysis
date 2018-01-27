@@ -30,6 +30,7 @@ import java.util.Map;
  * Manages thread-state for {@link Subject Subject} access (supporting
  * {@code SecurityUtils.}{@link org.apache.shiro.SecurityUtils#getSubject() getSubject()} calls)
  * during a thread's execution.
+ * 在线程的执行期间管理线程的状态。
  * <p/>
  * The {@link #bind bind} method will bind a {@link Subject} and a
  * {@link org.apache.shiro.mgt.SecurityManager SecurityManager} to the {@link ThreadContext} so they can be retrieved

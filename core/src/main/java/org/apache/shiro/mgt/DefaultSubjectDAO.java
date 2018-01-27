@@ -159,6 +159,8 @@ public class DefaultSubjectDAO implements SubjectDAO {
      * (typically from a {@link org.apache.shiro.session.mgt.SessionManager SessionManager} to be used to recreate
      * the {@code Subject} instance.
      *
+     * 保存subject的状态（它的principals和authentication状态）到它的session。
+     *
      * @param subject the subject for which state will be persisted to its session.
      */
     protected void saveToSession(Subject subject) {
@@ -171,7 +173,8 @@ public class DefaultSubjectDAO implements SubjectDAO {
      * Merges the Subject's current {@link org.apache.shiro.subject.Subject#getPrincipals()} with whatever may be in
      * any available session.  Only updates the Subject's session if the session does not match the current principals
      * state.
-     *
+     * 把subject当前的通过getPrincipals方法获取的principals合并到可用的session。如果session不匹配当前的principals状态，
+     * 仅仅更新subject的session。
      * @param subject the Subject for which principals will potentially be merged into the Subject's session.
      */
     protected void mergePrincipals(Subject subject) {
@@ -200,6 +203,7 @@ public class DefaultSubjectDAO implements SubjectDAO {
         Session session = subject.getSession(false);
 
         if (session == null) {
+            // session为null但是currentPrincipals不为空  就要创建一个session并把currentPrincipals存储到session中
             if (!CollectionUtils.isEmpty(currentPrincipals)) {
                 session = subject.getSession();
                 session.setAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY, currentPrincipals);
@@ -210,11 +214,13 @@ public class DefaultSubjectDAO implements SubjectDAO {
                     (PrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
 
             if (CollectionUtils.isEmpty(currentPrincipals)) {
+                // 当前的currentPrincipals为空但是原来的不为空  就要把原来的remove掉
                 if (!CollectionUtils.isEmpty(existingPrincipals)) {
                     session.removeAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
                 }
                 //otherwise both are null or empty - no need to update the session
             } else {
+                // 当前的不为空  如果和原来的不相等则更新  如果相等则不处理
                 if (!currentPrincipals.equals(existingPrincipals)) {
                     session.setAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY, currentPrincipals);
                 }

@@ -36,6 +36,9 @@ import java.util.Enumeration;
  * {@code SessionManager}, {@code SecurityManager}, etc, and instead satisfies all method implementations by interacting
  * with a servlet container provided {@link HttpSession HttpSession} instance.
  *
+ * Session的实现完全由一个标准的servlet容器HttpSession实例来实现。它不与任何Shiro相关的组件如SessionManager，SecurityManager
+ * 等等交互。
+ *
  * @since 1.0
  */
 public class HttpServletSession implements Session {

@@ -50,6 +50,7 @@ public interface Session {
 
     /**
      * Returns the time the session was started; that is, the time the system created the instance.
+     * 返回会话开始的时间，也就是系统创建实例的时间。
      *
      * @return The time the system created the session.
      */
@@ -58,6 +59,7 @@ public interface Session {
     /**
      * Returns the last time the application received a request or method invocation from the user associated
      * with this session.  Application calls to this method do not affect this access time.
+     * 返回应用最后一次收到请求或者方法调用的时间。
      *
      * @return The time the user last interacted with the system.
      * @see #touch()
@@ -66,6 +68,7 @@ public interface Session {
 
     /**
      * Returns the time in milliseconds that the session session may remain idle before expiring.
+     * 以毫秒为单位返回会话在过期之前可能保持空闲的时间。
      * <ul>
      * <li>A negative return value means the session will never expire.</li>
      * <li>A non-negative return value (0 or greater) means the session expiration will occur if idle for that
@@ -111,6 +114,7 @@ public interface Session {
     /**
      * Explicitly updates the {@link #getLastAccessTime() lastAccessTime} of this session to the current time when
      * this method is invoked.  This method can be used to ensure a session does not time out.
+     * 当这个方法调用的时候，明确地更新最后一次访问的时间为当前时间。 这个方法可以确保session不会过期。
      * <p/>
      * Most programmers won't use this method directly and will instead rely on the last access time to be updated
      * automatically as a result of an incoming web request or remote procedure call/method invocation.

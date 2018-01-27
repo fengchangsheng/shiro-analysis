@@ -77,6 +77,9 @@ public class SubjectCallable<V> implements Callable<V> {
         this.callable = delegate;
     }
 
+    /**
+     * TODO 为什么要走这种模式
+     */
     public V call() throws Exception {
         try {
             threadState.bind();
