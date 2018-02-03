@@ -49,7 +49,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * method calls to an underlying {@link org.apache.shiro.mgt.SecurityManager SecurityManager} instance for security checks.
  * It is essentially a {@code SecurityManager} proxy.
  *
- * 实现了Subject接口，把方法的调用委托给SecurityManager，它本质上是一个SecurityManager代理。
+ * 实现了Subject接口，把方法的调用委托给SecurityManager。
  *
  * <p/>
  * This implementation does not maintain state such as roles and permissions (only {@code Subject}
@@ -256,6 +256,7 @@ public class DelegatingSubject implements Subject {
 
     public void login(AuthenticationToken token) throws AuthenticationException {
         clearRunAsIdentitiesInternal();
+        // 调用安全管理器的login方法  返回一个新的subject
         Subject subject = securityManager.login(this, token);
 
         PrincipalCollection principals;
@@ -276,6 +277,7 @@ public class DelegatingSubject implements Subject {
                     "empty value.  This value must be non null and populated with one or more elements.";
             throw new IllegalStateException(msg);
         }
+        // 登录成功后填充相关属性（从新的subject拿）
         this.principals = principals;
         this.authenticated = true;
         if (token instanceof HostAuthenticationToken) {
@@ -401,6 +403,10 @@ public class DelegatingSubject implements Subject {
         return new SubjectCallable<V>(this, callable);
     }
 
+    /**
+     * 明确表示这里不支持Thread类型的Runnable，这个参数应该是一个非线程类型的的Runnable（因为Thread也继承自Runnable），
+     * 并且可以丢给ExecutorService或者其他线程调用
+     */
     public Runnable associateWith(Runnable runnable) {
         if (runnable instanceof Thread) {
             String msg = "This implementation does not support Thread arguments because of JDK ThreadLocal " +

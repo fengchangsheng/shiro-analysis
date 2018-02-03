@@ -35,6 +35,7 @@ import java.util.Arrays;
  * <p>Hashing comparisons (the most common technique used in secure applications) are not supported by this class, but
  * instead by the {@link org.apache.shiro.authc.credential.HashedCredentialsMatcher HashedCredentialsMatcher}.
  *
+ * 简单证书匹配器
  * @see org.apache.shiro.authc.credential.HashedCredentialsMatcher
  * @since 0.9
  */
@@ -96,6 +97,7 @@ public class SimpleCredentialsMatcher extends CodecSupport implements Credential
                     tokenCredentials.getClass().getName() + " and accountCredentials of type [" +
                     accountCredentials.getClass().getName() + "]");
         }
+        // 可以转换为字节数组 就转换为字节数组去比较(char[] byte[] String)
         if (isByteSource(tokenCredentials) && isByteSource(accountCredentials)) {
             if (log.isDebugEnabled()) {
                 log.debug("Both credentials arguments can be easily converted to byte arrays.  Performing " +

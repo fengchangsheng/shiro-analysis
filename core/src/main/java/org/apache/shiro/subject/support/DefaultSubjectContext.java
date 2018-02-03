@@ -144,6 +144,7 @@ public class DefaultSubjectContext extends MapContext implements SubjectContext 
 
         if (CollectionUtils.isEmpty(principals)) {
             //check to see if they were just authenticated:
+            // 检查是否刚验证通过  这时需要在AuthenticationInfo中取principals
             AuthenticationInfo info = getAuthenticationInfo();
             if (info != null) {
                 principals = info.getPrincipals();

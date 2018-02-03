@@ -75,6 +75,8 @@ public interface WebSubject extends Subject, RequestPairSource {
          * Constructs a new {@code Web.Builder} instance using the specified {@code SecurityManager} instance to
          * create the {@link WebSubject WebSubject} instance.
          *
+         * 每次进入AbstractShrioFilter都会调用这个构建器去创建一个新的Subject
+         *
          * @param securityManager the {@code SecurityManager SecurityManager} instance to use to build the
          *                        {@code WebSubject} instance.
          * @param request         the incoming ServletRequest that will be associated with the built {@code WebSubject}
@@ -145,6 +147,7 @@ public interface WebSubject extends Subject, RequestPairSource {
          * @return a new {@link WebSubject WebSubject} instance built by this {@code Builder}.
          */
         public WebSubject buildWebSubject() {
+            // 直接调用父类的方法去build  不一样的地方就直接覆盖父类的方法 如：newSubjectContextInstance
             Subject subject = super.buildSubject();
             if (!(subject instanceof WebSubject)) {
                 String msg = "Subject implementation returned from the SecurityManager was not a " +

@@ -324,6 +324,7 @@ public class HashedCredentialsMatcher extends SimpleCredentialsMatcher {
 
     /**
      * Returns a {@link Hash Hash} instance representing the already-hashed AuthenticationInfo credentials stored in the system.
+     * 返回一个Hash实例代表系统中已经散列的AuthenticationInfo的证书  这个需要我们到doGetAuthenticationInfo(token)中构造
      * <p/>
      * This method reconstructs a {@link Hash Hash} instance based on a {@code info.getCredentials} call,
      * but it does <em>not</em> hash that value - it is expected that method call will return an already-hashed value.
@@ -342,6 +343,7 @@ public class HashedCredentialsMatcher extends SimpleCredentialsMatcher {
      * @return a {@link Hash Hash} instance representing the given AuthenticationInfo's stored credentials.
      */
     protected Object getCredentials(AuthenticationInfo info) {
+        // 这里的证书通常就是从数据库拿到的  假如我们要加密 数据库中已经存储的是已经是加密后的数据了
         Object credentials = info.getCredentials();
 
         byte[] storedBytes = toBytes(credentials);
@@ -385,6 +387,7 @@ public class HashedCredentialsMatcher extends SimpleCredentialsMatcher {
      * Hash the provided {@code token}'s credentials using the salt stored with the account if the
      * {@code info} instance is an {@code instanceof} {@link SaltedAuthenticationInfo SaltedAuthenticationInfo} (see
      * the class-level JavaDoc for why this is the preferred approach).
+     * 如果info实例是一个SaltedAuthenticationInfo，就使用“salt”去hash提供的token中的credentials
      * <p/>
      * If the {@code info} instance is <em>not</em>
      * an {@code instanceof} {@code SaltedAuthenticationInfo}, the logic will fall back to Shiro 1.0

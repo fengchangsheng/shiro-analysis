@@ -335,6 +335,7 @@ public class DefaultSecurityManager extends SessionsSecurityManager {
         //Resolve an associated Session (usually based on a referenced session ID), and place it in the context before
         //sending to the SubjectFactory.  The SubjectFactory should not need to know how to acquire sessions as the
         //process is often environment specific - better to shield the SF from these details:
+        // 初次进入的时候没用，登录之后的每次请求都会依赖于这个session
         context = resolveSession(context);
 
         //Similarly, the SubjectFactory should not require any concept of RememberMe - translate that here first
@@ -347,6 +348,7 @@ public class DefaultSecurityManager extends SessionsSecurityManager {
         //(this is needed here in case rememberMe principals were resolved and they need to be stored in the
         //session, so we don't constantly rehydrate the rememberMe PrincipalCollection on every operation).
         //Added in 1.2:
+        // 这里在登录后会初次创建session
         save(subject);
 
         return subject;

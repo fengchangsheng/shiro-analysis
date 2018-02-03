@@ -103,7 +103,7 @@ public abstract class AuthorizingRealm extends AuthenticatingRealm
         super();
         if (cacheManager != null) setCacheManager(cacheManager);
         if (matcher != null) setCredentialsMatcher(matcher);
-
+        // 默认是使用权限缓存的
         this.authorizationCachingEnabled = true;
         this.permissionResolver = new WildcardPermissionResolver();
 

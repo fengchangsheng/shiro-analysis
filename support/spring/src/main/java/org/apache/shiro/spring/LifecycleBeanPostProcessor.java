@@ -37,6 +37,8 @@ import org.apache.shiro.util.Initializable;
  * to configure Shiro beans in Spring, since the user never has to worry about whether or not if they
  * have to specify init-method and destroy-method bean attributes.</p>
  *
+ *  Spring 的Bean的后置处理器，Shiro 的对象实现了Initializable 或者 Destroyable 接口， spring将会自动调用其 init 和
+ *  destroy 方法。
  * <p><b>Warning: This post processor has no way to determine if <tt>init()</tt> or <tt>destroy()</tt> have
  * already been called, so if you define this post processor in your applicationContext, do not also call these
  * methods manually or via Spring's <tt>init-method</tt> or <tt>destroy-method</tt> bean attributes.</b></p>

@@ -31,6 +31,7 @@ import java.lang.annotation.Annotation;
  * declared, and if so, performs a permission check to see if the calling <code>Subject</code> is allowed continued
  * access.
  *
+ * 权限注解处理器
  * @since 0.9.0
  */
 public class PermissionAnnotationHandler extends AuthorizingAnnotationHandler {
